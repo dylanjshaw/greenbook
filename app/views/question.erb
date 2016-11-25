@@ -1,0 +1,17 @@
+<h1>Question: <%=@question.title%></h1>
+<h2>Votes: <%=@question.votes.count%></h2>
+<h3>Author: <%=@question.author%></h3>
+<p>Content: <%=@question.content%></p>
+<ul>
+  <%@answers.each do |answer|%>
+    <li><%=answer.author, answer.content, answer.votes%></li>
+    <%if user_logged_in?%>
+      <form id="answer" method="post" action="/answer/<%=@question.id%>">
+        <textarea rows="4" cols="50" name="content" placeholder="Answer">
+        <input type="submit" value="Submit Answer">
+      </form>
+    <%end%>
+  <%end%>
+</ul>
+
+
