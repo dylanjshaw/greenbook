@@ -1,10 +1,16 @@
 <header>
   <h1>Swag Overflow</h1>
   <p>
-    <a class='top_links' href="/questions/">| new |</a>
-    <a class='top_links' href="#">comments |</a>
-    <a class='top_links' href="#">popular |</a>
-    <a class='top_links' href="#">login |</a>
+    <%= if logged_in? %>
+      <a class='top_links' href="/questions/new">| new |</a>
+      <a class='top_links' href="#">Register |</a>
+      <a class='top_links' href="#">Login |</a>
+      <a class='top_links' href="#">Home |</a>
+    <%= else %>
+      <a class='top_links' href="/questions/new">| new |</a>
+      <a class='top_links' href="#">Username |</a>
+      <a class='top_links' href="#">Home |</a>
+    <%= end %>
   </p>
 </header>
 
