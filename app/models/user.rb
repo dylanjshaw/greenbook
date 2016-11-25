@@ -13,15 +13,15 @@ class User < ActiveRecord::Base
   has_many :votes, :as => :voteable
 
   def password
-    @password ||= BCrpyt::Password.new(password)
+    @password ||= BCrpyt::Password.new(encrypted_password)
   end
 
-  def password=(password)
-    @password = Bcrypt::Password.create(password)
-    self.password = @password
+  def password=(new_password)
+    @password = BCrypt::Password.create(new_password)
+    self.encrypted_password = @password
   end
 
-  def authenticate(password)
-    self.password = password
+  def authenticate(input_password)
+    self.password = input_password
   end
 end
