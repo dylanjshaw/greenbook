@@ -3,7 +3,9 @@ get '/questions/new' do
 end
 
 get '/questions/:id' do
+  if session[:user_id]
   @user = User.find(session[:user_id])
+  end
   @question = Question.find(params[:id])
   @question_comments = @question.comments
   @answers = @question.answers
