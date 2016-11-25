@@ -1,3 +1,7 @@
+get '/questions/new' do
+  erb :'questions/new'
+end
+
 get '/questions/:id' do
   @user = User.find(session[:user_id])
   @question = Question.find(params[:id])
