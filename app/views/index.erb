@@ -1,10 +1,16 @@
 <header>
   <h1>Swag Overflow</h1>
   <p>
-    <a href="#posts">new</a>
-    <a href="#">comments</a>
-    <a href="#">popular</a>
-    <a href="/users/login">login</a>
+  <% if user_logged_in? %>
+      <a class='top_links' href="/logout">| Logout |</a>
+      <a class='top_links' href="/questions/new">new |</a>
+      <a class='top_links' href="#"> <%= User.find(session[:user_id]).username %> |</a>
+      <a class='top_links' href="#">Home |</a>
+  <% else %>
+      <a class='top_links' href="/register">Register |</a>
+      <a class='top_links' href="/login">Login |</a>
+      <a class='top_links' href="#">Home |</a>
+  <% end %>
   </p>
 </header>
 
@@ -28,13 +34,11 @@
   <% end %>
 </div>
 
-<form id="questions" method="question" action="/questions">
-  <input type="text" name="title" placeholder="title">
-  <input type="submit" value="submit new question">
-</form>
-
+<% if user_logged_in? %>
 <form id="new_comment_form" class="form" method='post', action '/questions'>
   <input type='text' name='question[title]'placeholder="Title"/><br>
   <textarea rows='10' cols='70' name='question[content]' placeholder="Ask a question here."></textarea><br>
   <input type="submit" class="button" value="Submit Comment" ></input>
 </form>
+  <% end %>
+

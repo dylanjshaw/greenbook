@@ -13,6 +13,15 @@ end
 #   redirect "/questions"
 # end
 
+post '/questions' do
+  new_question = Question.create( params[:question].merge(author_id: session[:user_id]) )
+  redirect "/"
+end
+
+get '/questions/new' do
+  erb :'questions/new'
+end
+
 delete '/questions/:id' do
   # @questions = Question.all
   Question.delete(params[:id])
@@ -21,20 +30,15 @@ delete '/questions/:id' do
   end
 end
 
-post '/questions' do
-
-  new_question = Question.create( params[:question].merge(author_id: session[:user_id]) )
-  redirect "/questions/#{new_question.id}"
-end
-
-get '/questions/new' do
-  erb :'questions/new'
-end
-
 get '/questions/:id' do
   @questions = Question.all
   @question = Question.find(params[:id])
   erb :index
+end
+
+get '/logout' do
+  session[:user_id] = nil
+  redirect '/questions'
 end
 
 get '/register' do
