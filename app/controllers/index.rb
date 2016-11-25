@@ -36,3 +36,8 @@ get '/questions/:id' do
   @question = Question.find(params[:id])
   erb :index
 end
+
+get '/register' do
+  erb :'users/new'
+end
+
