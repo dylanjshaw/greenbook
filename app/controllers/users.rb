@@ -1,3 +1,7 @@
+get '/register' do
+  erb :'users/new'
+end
+
 post '/users' do
   User.create(params[:user])
   redirect '/questions'
@@ -20,4 +24,9 @@ get "/login" do
 	else
 		erb :"users/login"
 	end
+end
+
+get '/logout' do
+  session[:user_id] = nil
+  redirect '/questions'
 end

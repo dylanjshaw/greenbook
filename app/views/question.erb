@@ -1,0 +1,67 @@
+<h1>Question: <%=@question.title%></h1>
+<h2>Votes: <%=@question.count_votes%></h2>
+<h3>Author: <%=@question.author%></h3>
+<p>Content: <%=@question.content%></p>
+
+<ul>
+  <% @question_comments.each do |comment| %>
+  <li> <% comment %></li>
+  <% end %>
+</ul>
+
+<%if user_logged_in? && @question.user_id == @user.id%>
+      <form id="question" method="post" action="/question/<%=@question.id%>">
+        <input type="hidden" name="_method" value="PUT">
+        <input type="text" name="title" placeholder="<%=@question.title%>">
+        <textarea rows="4" cols="50" name="content" placeholder="<%=@question.content%>">
+        <input type="submit" value="Update">
+      </form>
+      <form id="question" method="post" action="/question/<%=@question.id%>">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete?">
+      </form>
+      <form id="vote" method="post" action="/vote/<% @question.id%>/<%=@user.id%>">
+            <input type="submit" name="Upvote" value="Upvote">
+            <input type="submit" name="Downvote" value="Downvote">
+      </form>
+<%end%>
+
+<ul>
+  <%@answers.each do |answer|%>
+    <li><%=answer.author, answer.content, answer.count_votes%>
+      <ul>
+        <li>
+          <%@answer_comments.each do |comment| %>
+            comment
+          <%end%>
+        </li>
+      </ul>
+       <%if user_logged_in?%>
+          <form id="comment" method="post" action="/comment/<%=answer.id%>/<%=@user.id%>">
+            <textarea rows="4" cols="25" name="content" placeholder="Comment">
+            <input type="submit" value="Submit Answer">
+          </form>
+          <form id="vote" method="post" action="/vote/<%=answer.id%>/<%=@user.id%>">
+            <input type="submit" name="Upvote" value="Upvote">
+            <input type="submit" name="Downvote" value="Downvote">
+          </form>
+        <%end%>
+    </li>
+</ul>
+
+    <%if user_logged_in? && @user.id != @question.user_id%>
+      <form id="answer" method="post" action="/answer/<%=@question.id%>">
+        <textarea rows="4" cols="50" name="content" placeholder="Answer">
+        <input type="submit" value="Submit Answer">
+      </form>
+      <ul>
+        <li><%@answer_comments.each do |comment| %>
+            comment
+        <%end%>
+        </li>
+      </ul>
+    <%end%>
+  <%end%>
+
+
+
