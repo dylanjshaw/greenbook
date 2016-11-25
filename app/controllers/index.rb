@@ -17,11 +17,13 @@ delete '/posts/:id' do
   # write logic for deleting posts here.
 end
 
-post '/posts' do
-  Post.create( title: params[:title],
-               username: Faker::Internet.user_name,
-               comment_count: rand(1000) )
-  redirect '/posts'
+post '/questions' do
+  new_question = Question.create( params[:question].merge(author_id: session[:user_id]) )
+  redirect "/questions/#{new_question.id}"
+end
+
+get '/questions/new' do
+  erb :'questions/new'
 end
 
 get '/post/:id' do
