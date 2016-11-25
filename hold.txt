@@ -1,0 +1,4 @@
+        <span class='points'><%= question.points %></span>
+        <span class='username'><%= question.username %></span>
+        <span class='timestamp'><%= question.time_since_creation %></span>
+        <span class='comment-count'><%= question.comment_count %></span>
