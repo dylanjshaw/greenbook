@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :questions
   has_many :answers
-  has_many :comments, as: :commentable
+  has_many :comments
   # has_many :recieved_answers, through: :questions, class_name: 'Answer'
   # has_many :recieved_comments, through: :commentable, class_name: 'Answer'
 

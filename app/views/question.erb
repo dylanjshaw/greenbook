@@ -2,12 +2,29 @@
 <h2>Votes: <%=@question.votes.count%></h2>
 <h3>Author: <%=@question.author%></h3>
 <p>Content: <%=@question.content%></p>
+<%if user_logged_in? && @question.user_id == @user.id%>
+      <form id="question" method="post" action="/question/<%=@question.id%>">
+        <input type="hidden" name="_method" value="PUT">
+        <input type="text" name="title" placeholder="<%=@question.title%>">
+        <textarea rows="4" cols="50" name="content" placeholder="<%=@question.content%>">
+        <input type="submit" value="Update">
+      </form>
+      <form id="question" method="post" action="/question/<%=@question.id%>">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete?">
+      </form>
+<%end%>
+
 <ul>
   <%@answers.each do |answer|%>
     <li><%=answer.author, answer.content, answer.votes%></li>
-    <%if user_logged_in?%>
+    <%if user_logged_in? && @user.id != @question.user_id%>
       <form id="answer" method="post" action="/answer/<%=@question.id%>">
         <textarea rows="4" cols="50" name="content" placeholder="Answer">
+        <input type="submit" value="Submit Answer">
+      </form>
+      <form id="comment" method="post" action="/comment/<%=answer.id%>/<%=@user.id%>">
+        <textarea rows="4" cols="25" name="content" placeholder="Comment">
         <input type="submit" value="Submit Answer">
       </form>
     <%end%>
