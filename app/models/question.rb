@@ -4,5 +4,8 @@ class Question < ActiveRecord::Base
   has_many :comments, :as => :commentable
   has_many :votes, :as => :voteable
 
-  # Remember to create a migration!
+def count_votes
+    votes.pluck(:value).inject(0, :+)
+  end
+
 end
