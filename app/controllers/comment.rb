@@ -1,5 +1,4 @@
 post '/comment/:answer_id/:user_id' do
-  params.merge(commentable_id: params[:answer_id], commentable_type: "Answer")
-  @comment = Comment.create(params)
-  erb :question
+  @comment = Comment.create(content: params[:content], user_id: params[:user_id], commentable_id: params[:answer_id], commentable_type: "Answer")
+  redirect "/questions/#{@comment.question_id}"
 end
