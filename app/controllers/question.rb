@@ -7,9 +7,10 @@ get '/questions/:id' do
   @question = Question.find(params[:id])
   @question_comments = @question.comments
   @answers = @question.answers
-  @answer_comments = @answers.comments
   erb :question
 end
+
+
 
 put '/questions/:id' do
   @question = Question.find(params[:id])

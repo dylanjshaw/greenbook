@@ -5,7 +5,7 @@ class Answer < ActiveRecord::Base
   has_many :votes, :as => :voteable
 
   def count_votes
-    votes.pluck(:value).inject(0, :+)
+    votes.reduce {|sum, vote| sum + vote.value }
   end
 
 end
