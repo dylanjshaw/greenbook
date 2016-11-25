@@ -22,10 +22,13 @@ delete '/questions/:id' do
 end
 
 post '/questions' do
-  Question.create( title: params[:title],
-               username: Faker::Internet.user_name,
-               comment_count: rand(1000) )
-  redirect '/questions'
+
+  new_question = Question.create( params[:question].merge(author_id: session[:user_id]) )
+  redirect "/questions/#{new_question.id}"
+end
+
+get '/questions/new' do
+  erb :'questions/new'
 end
 
 get '/questions/:id' do
