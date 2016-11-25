@@ -12,4 +12,16 @@ class User < ActiveRecord::Base
   # has_many :commenters, through: :recieved_comments, source: :User
   has_many :votes, :as => :voteable
 
+  def password
+    @password ||= BCrpyt::Password.new(password)
+  end
+
+  def password=(password)
+    @password = Bcrypt::Password.create(password)
+    self.password = @password
+  end
+
+  def authenticate(password)
+    self.password = password
+  end
 end
