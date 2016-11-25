@@ -1,4 +1,9 @@
-get "/users/login" do 
+post '/users' do
+  User.create(params[:user])
+  redirect '/questions'
+end
+
+get "/users/login" do
 	erb :"/users/login"
 end
 

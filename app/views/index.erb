@@ -2,12 +2,13 @@
   <h1>Swag Overflow</h1>
   <p>
   <% if user_logged_in? %>
-      <a class='top_links' href="/questions/new">| new |</a>
-      <a class='top_links' href="#">Username |</a>
+      <a class='top_links' href="/logout">| Logout |</a>
+      <a class='top_links' href="/questions/new">new |</a>
+      <a class='top_links' href="#"> <%= User.find(session[:user_id]).username %> |</a>
       <a class='top_links' href="#">Home |</a>
   <% else %>
-      <a class='top_links' href="#">Register |</a>
-      <a class='top_links' href="/questions/login">Login |</a>
+      <a class='top_links' href="/register">Register |</a>
+      <a class='top_links' href="/login">Login |</a>
       <a class='top_links' href="#">Home |</a>
   <% end %>
   </p>
