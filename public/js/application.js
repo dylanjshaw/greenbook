@@ -26,6 +26,7 @@ $(document).ready(function() {
    $(".question-container").on("submit", "#vote-arrows", function(event){
       event.preventDefault();
       var form = $(this)
+      var form_opposite = form.siblings().closest('form')
       var url  = $(this).attr('action')
       var data = $(this).serialize()
 
@@ -35,13 +36,15 @@ $(document).ready(function() {
         data: data
       })
         .done(function(response){
-          var voteCountNode = form.parent().find(".vote-count")
-          var voteCount = parseInt(voteCountNode.text());
-          var voteValue = parseInt(response)
-          voteCountNode.text(voteCount + voteValue);
-          form.find("button").addClass("colored");
-        })
-    })
+            var voteCountNode = form.parent().find(".vote-count");
+            voteCountNode.text(response)
+            // var voteCount = parseInt(voteCountNode.text());
+            // var voteValue = parseInt(response);
+            // voteCountNode.text(voteCount + voteValue);
+            form.find("button").addClass("colored");
+            form_opposite.find("button").removeClass("colored");
+        });
+    });
 });
 
 
