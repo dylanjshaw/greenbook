@@ -19,6 +19,20 @@
   <title></title>
 </head>
 <body>
+  <header>
+    <h1>Swag Overflow</h1>
+    <p class="top-links">
+    <% if user_logged_in? %>
+        <a href="/logout">Logout</a>
+        <a href="/questions/new">new</a>
+        <a href="#"> <%= User.find(session[:user_id]).username %></a>
+    <% else %>
+        <a href="/register">Register</a>
+        <a href="/login">Login</a>
+    <% end %>
+        <a href="/questions">Home</a>
+    </p>
+  </header>
   <%= yield %>
 </body>
 </html>

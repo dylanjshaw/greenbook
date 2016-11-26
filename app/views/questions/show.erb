@@ -8,7 +8,7 @@
 <%if user_logged_in? %>
   <% if @question.author_id == @user.id %>
     <button id="update_button">Update My Question</button>
-    <form style="display:none" id="question" method="post" action="/questions/<%=@question.id%>">
+    <form class="hidden" id="question" method="post" action="/questions/<%=@question.id%>">
     <input type="hidden" name="_method" value="PUT">
     <input id='question_title_box' type="text" name="title" value="<%=@question.title%>">
     <textarea id='question_content_box' rows="4" cols="50" name="content"><%=@question.content%></textarea>
@@ -35,7 +35,7 @@
 
     <%if user_logged_in? && answer.user_id == @user.id%>
       <button id="update_answer_button">Update My Answer</button>
-      <form style="display:none" id="answer" method="post" action="/answers/<%=answer.id%>">
+      <form class="hidden" id="answer" method="post" action="/answers/<%=answer.id%>">
         <input type="hidden" name="_method" value="PUT">
         <input id='answer_title_box' type="text" name="content" value="<%=answer.content%>">
         <input type="submit" value="Update">
@@ -55,7 +55,6 @@
 <% if user_logged_in? && @user.id != @question.author_id %>
   <form id="answer" method="post" action="/answers">
     <input type="hidden" name="question_id" value="<%=@question.id%>"/>
-
     <textarea rows="4" cols="50" name="content" placeholder="Answer"></textarea>
     <input type="submit" value="Submit Answer">
   </form>
