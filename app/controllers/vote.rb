@@ -10,3 +10,7 @@ post '/vote/questions/:question_id/:user_id' do
   Vote.create(voteable_id: question.id, voteable_type: "Question", voter_id: params[:user_id], value: params[:value].to_i)
   redirect "/questions"
 end
+
+# post'/votes' do
+
+# end

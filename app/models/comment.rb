@@ -3,7 +3,7 @@ class Comment < ActiveRecord::Base
   has_many :votes, :as => :voteable
 
   def count_votes
-    votes.pluck(:value).inject(:+)
+    votes.sum(:value)
   end
 
 end
