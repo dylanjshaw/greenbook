@@ -1,4 +1,35 @@
+  <div class='question-container'>
 
+
+    <article id="<%= @question.id %>">
+
+      <form id="vote-arrows" method="post" action='/votes' class="upvote-form inline">
+        <input type="hidden" name="voteable_type" value="Question"/>
+        <input type="hidden" name="voteable_id" value=<%= @question.id %>/>
+        <input type="hidden" name="value" value="1"/>
+        <button type="submit" name="value" value="1" class="fa fa-sort-desc vote-button upvote-button"></button>
+      </form>
+
+      <span class="vote-count smallgrey"> <%= @question.count_votes %></span>
+
+      <form id="vote-arrows" method="post" action='/votes' class="downvote-form inline">
+        <input type="hidden" name="voteable_type" value="Question"/>
+        <input type="hidden" name="voteable_id" value=<%= @question.id %>/>
+        <input type="hidden" name="value" value="-1"/>
+        <button type="submit" name="value" value="-1" class="fa fa-sort-asc vote-button downvote-button"></button>
+      </form>
+
+
+
+      <p>
+        <span class='smallgrey'><%=@question.updated_at.strftime("%F")%></span>
+        <span class='smallgrey'><%=@question.author.username%></span>
+         <%if user_logged_in? && @question.author_id == session[:user_id]%>
+        <a class="delete smallgrey" href='/questions/<%= @question.id %>'></a>
+         <%end %>
+      </p>
+    </article>
+</div>
 <h1>Question: <%=@question.title%></h1>
 <h2>Votes: <%=@question.count_votes%></h2>
 <h3>Author: <%=@question.author.username%></h3>
@@ -21,12 +52,13 @@
     <input type="submit" value="Delete?">
     </form>
   <%end%>
-    <form id="vote" method="post" action="/votes">
+
+    <!-- <form id="vote" method="post" action="/votes">
       <input type="hidden" name="voteable_type" value="Question">
       <input type="hidden" name="voteable_id" value="<%= @question.id %>">
       <button type="submit" name="value" value="1">Upvote</button>
       <button type="submit" name="value" value="-1">Downvote</button>
-    </form>
+    </form> -->
 <%end%>
 
 <ul>
