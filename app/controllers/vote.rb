@@ -5,12 +5,14 @@
   redirect "/questions"
 end
 
-post '/vote/questions/:question_id/:user_id' do
-  question = Question.find(params[:question_id])
-  Vote.create(voteable_id: question.id, voteable_type: "Question", voter_id: params[:user_id], value: params[:value].to_i)
+# post '/vote/questions/:question_id/:user_id' do
+#   question = Question.find(params[:question_id])
+#   Vote.create(voteable_id: question.id, voteable_type: "Question", voter_id: params[:user_id], value: params[:value].to_i)
+#   redirect "/questions"
+# end
+
+post'/votes' do
+  params.merge(voter_id: session[:user_id])
+  Vote.create(params)
   redirect "/questions"
 end
-
-# post'/votes' do
-
-# end
