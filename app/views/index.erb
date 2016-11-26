@@ -26,8 +26,11 @@
       <h3 id='subtitle'><%= question.content %></h3>
       <p>
 
-
-        <a class="delete" href='/questions/<%= question.id %>'></a>
+         <%if user_logged_in? && question.author_id == session[:user_id]%>
+        <a class="delete smallgrey" href='/questions/<%= question.id %>'></a>
+         <%end %>
+        <span class='smallgrey'><%=question.updated_at.strftime("%F")%></span>
+        <span class='smallgrey'><%=question.author.username%></span>
       </p>
     </article>
 
@@ -38,7 +41,7 @@
 <form id="new_comment_form" class="form" method='post', action '/questions'>
   <input type='text' name='question[title]'placeholder="Title"/><br>
   <textarea rows='10' cols='70' name='question[content]' placeholder="Ask a question here."></textarea><br>
-  <input type="submit" class="button" value="Submit Comment" ></input>
+  <input type="submit" class="button" value="Submit Question" ></input>
 </form>
   <% end %>
 

@@ -13,11 +13,10 @@ get '/questions/:id' do
 end
 
 
-
 put '/questions/:id' do
   @question = Question.find(params[:id])
-  @question.update(title: params[:title], content: params[:content])
-  redirect '/questions/:id'
+  @question.update_attributes(title: params[:title], content: params[:content])
+  redirect "/questions/#{@question.id}"
 end
 
 delete '/questions/:id' do
