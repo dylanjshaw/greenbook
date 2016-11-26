@@ -14,12 +14,12 @@ $(document).ready(function() {
    $("#update_button").on('click', function(event){
     // event.preventDefault()
     $("#update_button").hide();
-    $('#question').show();
-   })
+    $("#question").show();
+   });
 
    $("#update_answer_button").on('click', function(event){
     // event.preventDefault()
     $("#update_answer_button").hide();
-    $('#answer').show();
+    $("#answer").show();
    })
 });
