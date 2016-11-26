@@ -3,6 +3,12 @@ post '/answer/:question_id' do
   redirect "/questions/#{params[:question_id]}"
 end
 
+post '/answers' do
+  params.merge(user_id: session[:user_id])
+  @answer = Answer.create
+  redirect "/questions/#{@answer.question_id}"
+end
+
 put '/answers/:answer_id' do
   @answer = Answer.find(params[:answer_id])
   @answer.update_attributes(content: params[:content])

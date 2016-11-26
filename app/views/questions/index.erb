@@ -21,7 +21,7 @@
     <article id="<%= question.id %>">
       <form method="post" action='/votes' class="inline">
         <input type="hidden" name="voteable_type" value="Question"/>
-        <input type="hidden" name="voteable_id" value=<%=question.id%>/>
+        <input type="hidden" name="voteable_id" value=<%= question.id %>/>
         <button type="submit" name="value" value="1" class="fa fa-sort-desc vote-button upvote-button"></button>
         <button type="submit" name="value" value="-1" class="fa fa-sort-asc vote-button downvote-button"></button>
         <p> <%= question.count_votes %> </p>
