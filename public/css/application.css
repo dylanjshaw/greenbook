@@ -167,6 +167,20 @@ form#posts input[type='submit'] {
 
 }
 
+.colored {
+  font-size: 130%;
+}
+
+.downvote-form .colored {
+  color: red;
+  margin-top: -3px;
+}
+
+.upvote-form .colored {
+  color: blue;
+  /*padding-top: 6px;*/
+}
+
 /*.nav {
   background-color: #95b3e2;
   float:top;

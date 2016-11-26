@@ -39,6 +39,7 @@ $(document).ready(function() {
           var voteCount = parseInt(voteCountNode.text());
           var voteValue = parseInt(response)
           voteCountNode.text(voteCount + voteValue);
+          form.find("button").addClass("colored");
         })
     })
 });
