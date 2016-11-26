@@ -23,11 +23,10 @@ $(document).ready(function() {
     $("#answer").show();
    })
 
-   $("#vote-arrows").on("click", ".vote-button", function(event){
+   $(".question-container").on("submit", "#vote-arrows", function(event){
       event.preventDefault();
-
-      var form = $(this).parent()
-      var url  = form.attr('action')
+      var form = $(this)
+      var url  = $(this).attr('action')
       var data = $(this).serialize()
 
       $.ajax ({
@@ -36,7 +35,10 @@ $(document).ready(function() {
         data: data
       })
         .done(function(response){
-          form.find(".vote-count").text(response);
+          var voteCountNode = form.parent().find(".vote-count")
+          var voteCount = parseInt(voteCountNode.text());
+          var voteValue = parseInt(response)
+          voteCountNode.text(voteCount + voteValue);
         })
     })
 });
