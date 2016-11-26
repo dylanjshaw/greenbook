@@ -18,7 +18,7 @@
         <input type="submit" value="Delete?">
       </form>
 <%elsif user_logged_in? %>
-      <form id="vote" method="post" action="/vote/<% @question.id%>/<%=@user.id%>">
+      <form id="vote" method="post" action="/vote/questions/<% @question.id%>/<%=@user.id%>">
             <input type="submit" name="Upvote" value="Upvote">
             <input type="submit" name="Downvote" value="Downvote">
       </form>

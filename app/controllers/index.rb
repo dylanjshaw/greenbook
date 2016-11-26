@@ -3,6 +3,9 @@ get '/' do
 end
 
 get '/questions' do
+  if session[:user_id]
+    @user = User.find(session[:user_id])
+  end
   @questions = Question.all
   erb :index
 end

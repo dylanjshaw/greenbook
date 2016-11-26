@@ -19,26 +19,17 @@
   <% @questions.each do |question| %>
 
     <article id="<%= question.id %>">
-      <form method="question" action='/questions/<%= question.id %>/vote' class="inline">
-        <button type="submit" name="submit_param" value="submit_value" class="fa fa-sort-desc vote-button upvote-button"></button>
+      <form method="post" action='/vote/questions/<%= question.id %>/<%= @user.id %>' class="inline">
+        <button type="submit" name="value" value="1" class="fa fa-sort-desc vote-button upvote-button"></button>
+        <button type="submit" name="value" value="-1" class="fa fa-sort-asc vote-button downvote-button"></button>
+        <p> <%= question.count_votes %> </p>
       </form>
-      <h2><a href='/questions/<%= question.id %>'><%= question.title %></a></h2>
-      <h3 id='subtitle'><%= question.content %></h3>
-      <p>
-
-
-        <a class="delete" href='/questions/<%= question.id %>'></a>
-      </p>
+        <h2><a href='/questions/<%= question.id %>'><%= question.title %></a></h2>
+        <h3 id='subtitle'><%= question.content %></h3>
     </article>
 
   <% end %>
 </div>
 
-<% if user_logged_in? %>
-<form id="new_comment_form" class="form" method='post', action '/questions'>
-  <input type='text' name='question[title]'placeholder="Title"/><br>
-  <textarea rows='10' cols='70' name='question[content]' placeholder="Ask a question here."></textarea><br>
-  <input type="submit" class="button" value="Submit Comment" ></input>
-</form>
-  <% end %>
+
 
