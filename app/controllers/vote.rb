@@ -13,6 +13,13 @@
 
 post'/votes' do
   params.merge(voter_id: session[:user_id])
-  Vote.create(params)
-  redirect "/questions"
+  new_vote = Vote.create(params)
+  if request.xhr?
+    # var question = new_vote.question
+
+    # var voteable = Voteable.find_by(voteable_id: new_vote.voteable_id, voteable_type: new_vote.voteable_type)
+    return voteable.count_votes
+  else
+    redirect "/questions"
+  end
 end

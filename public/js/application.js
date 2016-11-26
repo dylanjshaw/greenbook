@@ -22,4 +22,23 @@ $(document).ready(function() {
     $("#update_answer_button").hide();
     $("#answer").show();
    })
+
+   $("#vote-arrows").on("click", ".vote-button", function(event){
+      event.preventDefault();
+
+      var form = $(this).parent()
+      var url  = form.attr('action')
+      var data = $(this).serialize()
+
+      $.ajax ({
+        method: 'POST',
+        url: url,
+        data: data
+      })
+        .done(function(response){
+          form.find(".vote-count").text(response);
+        })
+    })
 });
+
+
