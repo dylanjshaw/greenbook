@@ -6,7 +6,6 @@ class Answer < ActiveRecord::Base
 
   def count_votes
       votes.reduce {|sum, vote| sum + vote.value }
-
   end
 
 end

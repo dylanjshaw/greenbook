@@ -7,9 +7,7 @@ get '/questions/:id' do
   @user = User.find(session[:user_id])
   end
   @question = Question.find(params[:id])
-  @question_comments = @question.comments
-  @answers = @question.answers
-  erb :question
+  erb :'questions/show'
 end
 
 

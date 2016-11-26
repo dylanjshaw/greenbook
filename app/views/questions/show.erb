@@ -28,7 +28,7 @@
 <%end%>
 
   <ul>
-      <%@answers.each do |answer|%>
+      <%@question.answers.each do |answer|%>
         <li><%= answer.content %> <%= answer.count_votes %>-<%= User.find(answer.user_id).username%></li>
          <%if user_logged_in? && answer.user_id == @user.id%>
 

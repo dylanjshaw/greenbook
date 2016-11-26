@@ -7,7 +7,7 @@ get '/questions' do
     @user = User.find(session[:user_id])
   end
   @questions = Question.all
-  erb :index
+  erb :"questions/index"
 end
 
 post '/questions' do
