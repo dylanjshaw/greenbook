@@ -5,8 +5,7 @@ class Question < ActiveRecord::Base
   has_many :votes, :as => :voteable
 
 def count_votes
-    # votes.inject(:+){|vote| vote.value }
-    votes.reduce {|sum, vote| sum + vote.value }
+    votes.sum(:value)
   end
 
 end
