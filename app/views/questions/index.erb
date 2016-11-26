@@ -1,38 +1,26 @@
-<header>
-  <h1>Swag Overflow</h1>
-  <p>
-  <% if user_logged_in? %>
-      <a class='top_links' href="/logout">| Logout |</a>
-      <a class='top_links' href="/questions/new">new |</a>
-      <a class='top_links' href="#"> <%= User.find(session[:user_id]).username %> |</a>
-      <a class='top_links' href="#">Home |</a>
-  <% else %>
-      <a class='top_links' href="/register">Register |</a>
-      <a class='top_links' href="/login">Login |</a>
-      <a class='top_links' href="#">Home |</a>
-  <% end %>
-  </p>
-</header>
+
 
 
 <div class='question-container'>
   <% @questions.each do |question| %>
 
     <article id="<%= question.id %>">
-      <form method="post" action='/vote/questions/<%= question.id %>/<%= session[:user_id] %>' class="inline">
+
+      <form id="vote-arrows" method="post" action='/votes' class="inline">
+        <input type="hidden" name="voteable_type" value="Question"/>
+        <input type="hidden" name="voteable_id" value=<%= question.id %>/>
         <button type="submit" name="value" value="1" class="fa fa-sort-desc vote-button upvote-button"></button>
         <button type="submit" name="value" value="-1" class="fa fa-sort-asc vote-button downvote-button"></button>
-        <p> <%= question.count_votes %> </p>
+        <p class="vote-count"> <%= question.count_votes %> </p>
       </form>
       <h2><a href='/questions/<%= question.id %>'><%= question.title %></a></h2>
       <h3 id='subtitle'><%= question.content %></h3>
       <p>
-
+        <span class='smallgrey'><%=question.updated_at.strftime("%F")%></span>
+        <span class='smallgrey'><%=question.author.username%></span>
          <%if user_logged_in? && question.author_id == session[:user_id]%>
         <a class="delete smallgrey" href='/questions/<%= question.id %>'></a>
          <%end %>
-        <span class='smallgrey'><%=question.updated_at.strftime("%F")%></span>
-        <span class='smallgrey'><%=question.author.username%></span>
       </p>
     </article>
 

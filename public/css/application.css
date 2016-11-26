@@ -35,9 +35,9 @@ header p a {
   text-decoration: none;
 }
 
-header p a:nth-child(n + 2):before {
+/*header p a:nth-child(n + 2):before {
   content: " | ";
-}
+}*/
 
 article {
   margin: 5px 5px;
@@ -94,10 +94,10 @@ article p span.username:before {
 }
 
 
-.top_links{
+.top-links a {
   font-size: 15px;
   float: right;
-  margin-right: 25px;
+  margin-right: 12px;
 }
 
 article p span.timestamp:after {
@@ -162,4 +162,41 @@ form#posts input[type='submit'] {
   vertical-align: top;
   padding: 1px 0px 0px 0px;
 }
+
+.hidden {
+  display: none;
+}
+
+/*.nav {
+  background-color: #95b3e2;
+  float:top;
+}
+
+.nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.nav li {
+    float: left;
+}
+
+.nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.nav a:hover:not(.active) {
+    background-color: #111;
+}
+*/
+/*.nav.active {
+background-color:#4CAF50;
+}*/
 

@@ -7,9 +7,15 @@ post '/users' do
   redirect '/questions'
 end
 
-get "/users/login" do
-	erb :"/users/login"
-end
+# get "/users/login" do
+# 	erb :"/users/login"
+# end
+
+
+
+# get '/users/:id' do
+
+# end
 
 get "/login" do
 	@user = User.find_by(email: params[:email])

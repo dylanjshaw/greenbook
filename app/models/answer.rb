@@ -5,8 +5,7 @@ class Answer < ActiveRecord::Base
   has_many :votes, :as => :voteable
 
   def count_votes
-      votes.reduce {|sum, vote| sum + vote.value }
-
+    votes.sum(:value)
   end
 
 end

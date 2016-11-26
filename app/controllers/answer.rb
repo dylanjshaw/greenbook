@@ -1,6 +1,11 @@
-post '/answer/:question_id' do
-  @answer = Answer.create(content: params[:content], question_id: params[:question_id], user_id: session[:user_id])
-  redirect "/questions/#{params[:question_id]}"
+# post '/answer/:question_id' do
+#   @answer = Answer.create(content: params[:content], question_id: params[:question_id], user_id: session[:user_id])
+#   redirect "/questions/#{params[:question_id]}"
+# end
+
+post '/answers' do
+  @answer = Answer.create(params.merge(user_id: session[:user_id]))
+  redirect "/questions/#{@answer.question_id}"
 end
 
 put '/answers/:answer_id' do
@@ -15,5 +20,4 @@ delete '/answers/:answer_id' do
   question_id = @answer.question_id
   Answer.delete(answer_id)
   redirect "/questions/#{question_id}"
-
 end

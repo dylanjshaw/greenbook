@@ -1,0 +1,62 @@
+
+<h1>Question: <%=@question.title%></h1>
+<h2>Votes: <%=@question.count_votes%></h2>
+<h3>Author: <%=@question.author.username%></h3>
+<p>Content: <%=@question.content%></p>
+
+
+<%if user_logged_in? %>
+  <% if @question.author_id == @user.id %>
+    <button id="update_button">Update My Question</button>
+    <form class="hidden" id="question" method="post" action="/questions/<%=@question.id%>">
+    <input type="hidden" name="_method" value="PUT">
+    <input id='question_title_box' type="text" name="title" value="<%=@question.title%>">
+    <textarea id='question_content_box' rows="4" cols="50" name="content"><%=@question.content%></textarea>
+    <input type="submit" value="Update">
+    </form>
+    <br>
+    <br>
+    <form id="delete_question" method="post" action='/questions/<%= @question.id %>'>
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete?">
+    </form>
+  <%end%>
+    <form id="vote" method="post" action="/votes">
+      <input type="hidden" name="voteable_type" value="Question">
+      <input type="hidden" name="voteable_id" value="<%= @question.id %>">
+      <button type="submit" name="value" value="1">Upvote</button>
+      <button type="submit" name="value" value="-1">Downvote</button>
+    </form>
+<%end%>
+
+<ul>
+  <%@question.answers.each do |answer|%>
+    <li><%= answer.content %> <%= answer.count_votes %>-<%= User.find(answer.user_id).username%></li>
+
+    <%if user_logged_in? && answer.user_id == @user.id%>
+      <button id="update_answer_button">Update My Answer</button>
+      <form class="hidden" id="answer" method="post" action="/answers/<%=answer.id%>">
+        <input type="hidden" name="_method" value="PUT">
+        <input id='answer_title_box' type="text" name="content" value="<%=answer.content%>">
+        <input type="submit" value="Update">
+      </form>
+
+
+      <form id="answer" method="post" action="/answers/<%=answer.id%>">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete?">
+      </form>
+    <%end%>
+  <%end%>
+</ul>
+
+
+
+<% if user_logged_in? && @user.id != @question.author_id %>
+  <form id="answer" method="post" action="/answers">
+    <input type="hidden" name="question_id" value="<%=@question.id%>"/>
+    <textarea rows="4" cols="50" name="content" placeholder="Answer"></textarea>
+    <input type="submit" value="Submit Answer">
+  </form>
+<%end%>
+
