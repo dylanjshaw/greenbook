@@ -14,7 +14,9 @@
         <textarea id='question_content_box' rows="4" cols="50" name="content"><%=@question.content%></textarea>
         <input type="submit" value="Update">
       </form>
-      <form id="question" method="post" action="/question/<%=@question.id%>">
+      <br>
+      <br>
+      <form id="delete_question" method="post" action='/questions/<%= @question.id %>'>
         <input type="hidden" name="_method" value="DELETE">
         <input type="submit" value="Delete?">
       </form>

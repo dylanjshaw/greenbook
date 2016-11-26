@@ -11,15 +11,15 @@ $(document).ready(function() {
       })
     });
 
-   $('body').click("#update_button", function(event){
+   $("#update_button").on('click', function(event){
     // event.preventDefault()
-    $("#update_button").hide()
-    $('#question').show()
+    $("#update_button").hide();
+    $('#question').show();
    })
 
-   $('body').click("#update_answer_button", function(event){
+   $("#update_answer_button").on('click', function(event){
     // event.preventDefault()
-    $("#update_answer_button").hide()
-    $('#answer').show()
+    $("#update_answer_button").hide();
+    $('#answer').show();
    })
 });
