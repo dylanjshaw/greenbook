@@ -9,11 +9,12 @@
       <form id="vote-arrows" method="post" action='/votes' class="inline">
         <input type="hidden" name="voteable_type" value="Question"/>
         <input type="hidden" name="voteable_id" value=<%= question.id %>/>
-        <button type="submit" name="value" value="1" class="fa fa-sort-desc vote-button upvote-button"></button>
+        <button type="submit" name="value" value="1" class="fa fa-sort-desc  vote-button upvote-button"></button>
+          <span class="vote-count smallgrey"> <%= question.count_votes %></span>
         <button type="submit" name="value" value="-1" class="fa fa-sort-asc vote-button downvote-button"></button>
-        <p class="vote-count"> <%= question.count_votes %> </p>
+
       </form>
-      <h2><a href='/questions/<%= question.id %>'><%= question.title %></a></h2>
+      <h2><a id='title' href='/questions/<%= question.id %>'><%= question.title %></a></h2>
       <h3 id='subtitle'><%= question.content %></h3>
       <p>
         <span class='smallgrey'><%=question.updated_at.strftime("%F")%></span>

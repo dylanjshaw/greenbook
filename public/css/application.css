@@ -6,14 +6,6 @@ body {
   margin: 0 auto;
 }
 
-#question_title_box{
-
-}
-
-#question_content_box{
-
-}
-
 header {
   background-color: #95b3e2;
   padding: 5px 5px;
@@ -94,7 +86,7 @@ article p span.username:before {
 }
 
 
-.top-links a {
+.top-links a{
   font-size: 15px;
   float: right;
   margin-right: 12px;
@@ -145,26 +137,34 @@ form#posts input[type='submit'] {
   display: inline;
 }
 
-.upvote-button {
+.vote-button {
   background-color: transparent;
   border: none;
   padding-top: 5px;
   color: #8C8C8C;
-  vertical-align: sub;
   padding: 1px 0px 0px 0px;
 }
 
+.upvote-button {
+  vertical-align: sub;
+}
+
 .downvote-button {
-  background-color: transparent;
-  border: none;
-  padding-top: 5px;
-  color: #8C8C8C;
   vertical-align: top;
-  padding: 1px 0px 0px 0px;
 }
 
 .hidden {
   display: none;
+}
+
+#title{
+ padding-left: 10px;*/
+}
+
+.vote-count{
+    color: #595959;
+    font-size: 0.82em;
+
 }
 
 /*.nav {
