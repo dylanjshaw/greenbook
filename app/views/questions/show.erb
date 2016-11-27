@@ -87,6 +87,21 @@
       </article>
 
     </div>
+    <div>
+      <ul>
+        <% @question.answers.each do |answer| %>
+           <% answer.comments.each do |comment| %>
+        <li> <%= comment.content %> </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+      <form id="answer_comment" method="post" action="/comments">
+        <input type="hidden" name="commentable_id" value= <%=answer.id%>>
+        <input type="hidden" name="question_id" value= <%= @question.id %>>
+        <textarea rows="2" cols="30" name="content" placeholder="Comment"></textarea>
+        <input type="submit" value="Submit Comment">
+      </form>
 
     <%if user_logged_in? && answer.user_id == @user.id%>
       <button id="update_answer_button">Update My Answer</button>
