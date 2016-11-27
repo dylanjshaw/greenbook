@@ -62,7 +62,31 @@
 
 <ul>
   <%@question.answers.each do |answer|%>
-    <li><%= answer.content %> <%= answer.count_votes %>-<%= User.find(answer.user_id).username%></li>
+    <li><%= answer.content %></li>
+
+    <div class='question-container'>
+
+      <article id="<%= answer.id %>">
+
+        <form id="vote-arrows" method="post" action='/votes' class="upvote-form inline">
+          <input type="hidden" name="voteable_type" value="Answer"/>
+          <input type="hidden" name="voteable_id" value=<%= answer.id %>/>
+          <input type="hidden" name="value" value="1"/>
+          <button type="submit" name="value" value="1" class="fa fa-sort-desc vote-button upvote-button"></button>
+        </form>
+
+        <span class="vote-count smallgrey"> <%= answer.count_votes %></span>
+
+        <form id="vote-arrows" method="post" action='/votes' class="downvote-form inline">
+          <input type="hidden" name="voteable_type" value="Answer"/>
+          <input type="hidden" name="voteable_id" value=<%= answer.id %>/>
+          <input type="hidden" name="value" value="-1"/>
+          <button type="submit" name="value" value="-1" class="fa fa-sort-asc vote-button downvote-button"></button>
+        </form>
+
+      </article>
+
+    </div>
 
     <%if user_logged_in? && answer.user_id == @user.id%>
       <button id="update_answer_button">Update My Answer</button>
@@ -75,7 +99,7 @@
 
       <form id="answer" method="post" action="/answers/<%=answer.id%>">
         <input type="hidden" name="_method" value="DELETE">
-        <input type="submit" value="Delete?">
+        <input type="submit" value="Delete">
       </form>
     <%end%>
   <%end%>
